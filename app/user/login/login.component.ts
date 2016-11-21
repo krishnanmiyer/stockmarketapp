@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit{
   login: FormGroup;
   submittedValues: string;
   invalidEmail: boolean = false;
+  returnPath: string;
 
   constructor(fb: FormBuilder, private route: ActivatedRoute, private router: Router, private service: StockmarketService, private loginService:LoginService) {
     this.login = fb.group({
@@ -27,8 +28,11 @@ export class LoginComponent implements OnInit{
 
   logout(data: any) {
     if (data == 'out') {
-    this.loginService.changeLoginStatus(false);
-    this.router.navigate(['/']);
+      this.loginService.changeLoginStatus(false);
+      this.router.navigate(['/']);
+    }
+    else if (data != 'in' && data != '') {
+      this.returnPath = data;
     }
   }
 
@@ -55,7 +59,14 @@ export class LoginComponent implements OnInit{
     else {
       this.invalidEmail = false;
       this.loginService.changeLoginStatus(true, email);
-      this.router.navigate(['/home']);
+      console.log(this.returnPath);
+      
+      if (this.returnPath != '') {
+        this.router.navigate([ `/${this.returnPath}`]);
+      }
+      else {
+        this.router.navigate(['/home']);
+      }
     }
   }
 }

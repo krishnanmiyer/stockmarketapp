@@ -132,6 +132,15 @@ export class StockmarketService {
     return this.jsonp.get(queryUrl, { search: params }).map(r => r.json());
   }
 
+  getStockTrending() {
+      const queryUrl = 'http://research.investors.com/services/JSONPService.asmx/GetNumOfStocksOnTheMoveData';
+
+      let params = new URLSearchParams();
+      params.set('callback', 'JSONP_CALLBACK');
+      params.set('maxNumOfStocksPerList', '20');
+      return this.jsonp.get(queryUrl, { search: params }).map(r => r.json());
+  }
+
   addUser(input: UserRegistration) {
     let params = JSON.stringify(input);
 

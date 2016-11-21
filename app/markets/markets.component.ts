@@ -1,6 +1,8 @@
 import { Component} from '@angular/core';
 import { StockmarketService } from '../shared/stockmarket.service';
 import { MarketDataInput, Req } from '../shared/stockmarket.model';
+import { LoginService } from '../shared/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'markets',
@@ -10,24 +12,20 @@ import { MarketDataInput, Req } from '../shared/stockmarket.model';
 export class MarketsComponent { 
   marketsToday: any;
   
-  constructor(private service: StockmarketService ) {
-    this.getMarketData("0DJIA");    
+  constructor(private service: StockmarketService, private loginService: LoginService, private router: Router ) {
+    
+    if (!loginService.userLoggedIn) {
+      this.router.navigate(['login/markets']);
+    }
+    
+    //this.getMarketData("0DJIA");
   }
 
   getMarketData(symbol: string) {
-    let input = new MarketDataInput();
-    let request = new Req();
-    request.Symbol = symbol;
-    request.Type = 1;
-    request.EnableBats = true;
-    request.StartDate = "2016-6-28";
-    request.EndDate = "2016-10-23";
-    input.req = request;
 
-    this.service.getMarketToday(JSON.stringify(input)).subscribe(r => this.populatestocks(r), err => console.log("getMarketData: ", err));
   }
 
   populatestocks(data: any) {
-    console.log("data -->", data)
+
   }
 }

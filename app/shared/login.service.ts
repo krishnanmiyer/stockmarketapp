@@ -43,5 +43,6 @@ export class LoginService {
         var date = new Date();
         var expiry = new Date(date.setTime(date.getTime() + 20 * 86400000));
         this.cookieService.put(this.cookieKey, this.userData, { expires: expiry });
+        this.user = this.getCookie();
     }
 }

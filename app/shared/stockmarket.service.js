@@ -113,6 +113,13 @@ var StockmarketService = (function () {
         params.set('maxNumOfStocksPerList', '20');
         return this.jsonp.get(queryUrl, { search: params }).map(function (r) { return r.json(); });
     };
+    StockmarketService.prototype.getStockTrending = function () {
+        var queryUrl = 'http://research.investors.com/services/JSONPService.asmx/GetNumOfStocksOnTheMoveData';
+        var params = new http_1.URLSearchParams();
+        params.set('callback', 'JSONP_CALLBACK');
+        params.set('maxNumOfStocksPerList', '20');
+        return this.jsonp.get(queryUrl, { search: params }).map(function (r) { return r.json(); });
+    };
     StockmarketService.prototype.addUser = function (input) {
         var params = JSON.stringify(input);
         var queryUrl = "http://stockmarketapi.azurewebsites.net/api/user/add";

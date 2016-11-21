@@ -34,6 +34,9 @@ var LoginComponent = (function () {
             this.loginService.changeLoginStatus(false);
             this.router.navigate(['/']);
         }
+        else if (data != 'in' && data != '') {
+            this.returnPath = data;
+        }
     };
     LoginComponent.prototype.onBlur = function (event) {
         if (event.target.value != '') {
@@ -55,7 +58,13 @@ var LoginComponent = (function () {
         else {
             this.invalidEmail = false;
             this.loginService.changeLoginStatus(true, email);
-            this.router.navigate(['/home']);
+            console.log(this.returnPath);
+            if (this.returnPath != '') {
+                this.router.navigate([("/" + this.returnPath)]);
+            }
+            else {
+                this.router.navigate(['/home']);
+            }
         }
     };
     LoginComponent = __decorate([

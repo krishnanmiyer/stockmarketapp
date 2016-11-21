@@ -20,11 +20,8 @@ var StocksOnMoveComponent = (function () {
         this.service.getStocksOnMove().subscribe(function (r) { return _this.populatestocks(r); }, function (err) { return console.log("getStocksOnMove: ", err); });
     };
     StocksOnMoveComponent.prototype.populatestocks = function (data) {
-        console.log("data -->", data);
         this.upstocks = data.d.sotm.UpStocks;
         this.downstocks = data.d.sotm.DownStocks;
-        console.log("up -->", this.upstocks);
-        console.log("down -->", this.downstocks);
     };
     StocksOnMoveComponent = __decorate([
         core_1.Component({
