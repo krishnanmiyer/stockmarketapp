@@ -176,7 +176,7 @@ export class StockmarketService {
     });
 
     return this.http.get(queryUrl, options).map(r => r.json());    
-  }
+  } 
 }
 
 
