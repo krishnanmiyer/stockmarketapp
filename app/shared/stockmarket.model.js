@@ -100,4 +100,16 @@ var Bullion = (function () {
     return Bullion;
 }());
 exports.Bullion = Bullion;
+var UserRegistration = (function () {
+    function UserRegistration() {
+    }
+    return UserRegistration;
+}());
+exports.UserRegistration = UserRegistration;
+var Userlogin = (function () {
+    function Userlogin() {
+    }
+    return Userlogin;
+}());
+exports.Userlogin = Userlogin;
 //# sourceMappingURL=stockmarket.model.js.map

@@ -113,6 +113,32 @@ var StockmarketService = (function () {
         params.set('maxNumOfStocksPerList', '20');
         return this.jsonp.get(queryUrl, { search: params }).map(function (r) { return r.json(); });
     };
+    StockmarketService.prototype.addUser = function (input) {
+        var params = JSON.stringify(input);
+        var queryUrl = "http://stockmarketapi.azurewebsites.net/api/user/add";
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var options = new http_1.RequestOptions({
+            method: http_1.RequestMethod.Post,
+            headers: headers
+        });
+        return this.http.post(queryUrl, params, options).map(function (r) { return r.json(); });
+    };
+    StockmarketService.prototype.login = function (input) {
+        var params = [
+            ("" + input.username),
+            ("" + input.password),
+        ].join('/');
+        var queryUrl = "http://stockmarketapi.azurewebsites.net/api/login/" + params;
+        console.log(queryUrl);
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var options = new http_1.RequestOptions({
+            method: http_1.RequestMethod.Get,
+            headers: headers
+        });
+        return this.http.get(queryUrl, options).map(function (r) { return r.json(); });
+    };
     StockmarketService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Jsonp, http_1.Http])

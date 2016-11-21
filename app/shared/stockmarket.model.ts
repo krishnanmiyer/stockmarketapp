@@ -126,5 +126,16 @@ export class Bullion
         this.symbol = sym;
         this.prices = new Array<string>();
     }
+}
 
+export class UserRegistration {
+    userName: string;
+    emailAddress: string;
+    gender: Number;
+    password: string;
+}
+
+export class Userlogin {
+    username: string;
+    password: string;
 }

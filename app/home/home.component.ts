@@ -19,7 +19,7 @@ export class HomeComponent {
   constructor(private service: StockmarketService) {
     this.getStockMarketUpdates();
     this.getMarketIndices();
-    this.getBullionMarketData()
+    this.getBullionMarketData();
   }
 
   getStockMarketUpdates() {

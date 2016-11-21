@@ -13,10 +13,14 @@ var router_1 = require('@angular/router');
 var home_component_1 = require('./home/home.component');
 var quote_component_1 = require('./quote/quote.component');
 var markets_component_1 = require('./markets/markets.component');
+var registration_component_1 = require('./user/registration/registration.component');
+var login_component_1 = require('./user/login/login.component');
 var appRoutes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'quote/:sym', component: quote_component_1.StockQuoteComponent },
-    { path: 'markets', component: markets_component_1.MarketsComponent }
+    { path: 'markets', component: markets_component_1.MarketsComponent },
+    { path: 'register', component: registration_component_1.RegistrationComponent },
+    { path: 'login/:status', component: login_component_1.LoginComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

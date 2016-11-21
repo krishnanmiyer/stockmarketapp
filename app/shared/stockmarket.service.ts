@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Jsonp, URLSearchParams, Headers, Http, Response, RequestOptions, RequestMethod } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ChartDataInput, ChartDataOutput, Close, DataSeries, Element } from './stockmarket.model';
+import { ChartDataInput, ChartDataOutput, Close, DataSeries, Element, UserRegistration, Userlogin } from './stockmarket.model';
 
 @Injectable()
 export class StockmarketService {
@@ -131,6 +131,43 @@ export class StockmarketService {
     params.set('maxNumOfStocksPerList', '20');
     return this.jsonp.get(queryUrl, { search: params }).map(r => r.json());
   }
+
+  addUser(input: UserRegistration) {
+    let params = JSON.stringify(input);
+
+    let queryUrl: string = `http://stockmarketapi.azurewebsites.net/api/user/add`;
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let options = new RequestOptions({
+      method: RequestMethod.Post,
+      headers: headers
+    });
+
+    return this.http.post(queryUrl, params, options).map(r => r.json());    
+  }
+
+   login(input: UserLogin) {
+    let params: string = [
+      `${input.username}`,
+      `${input.password}`,
+    ].join('/');
+
+    let queryUrl: string = `http://stockmarketapi.azurewebsites.net/api/login/${params}`;
+
+    console.log(queryUrl);
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let options = new RequestOptions({
+      method: RequestMethod.Get,
+      headers: headers
+    });
+
+    return this.http.get(queryUrl, options).map(r => r.json());    
+  } 
 }
 
 

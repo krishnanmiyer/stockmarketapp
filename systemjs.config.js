@@ -27,6 +27,7 @@
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
       'ng2-charts': 'node_modules/ng2-charts',
+      'angular2-cookie': 'npm:angular2-cookie'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -43,7 +44,11 @@
       },
       'ng2-charts': {
         defaultExtension: 'js'
-      }
+      },
+      'angular2-cookie': {
+        main: './core.js',
+        defaultExtension: 'js'
+      }      
     }
   });
 })(this);
