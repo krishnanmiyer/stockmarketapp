@@ -2,26 +2,18 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-4">
 			<div class="row">
-				<div class="container">
-					<form class="form-inline">
-						<div class="form-group">
-							<label for="stockSymbol">Try Stock Name or Symbol ("Apple" or "AAPL")</label>
-							<input (input)="term$.next($event.target.value)" class="form-control" id="stockSymbol" name="stockSymbol" value={{symbol}}>
-							<ul class="list-group" [hidden]="items == null || items.length < 1" id="stockList">
-								<li class="list-group-item" *ngFor="let item of items"><a (click)="quote(item.Symbol);getChartData(item.Symbol);">{{item.Name}} ({{item.Exchange}})</a></li>
-							</ul>
-						</div>
-					</form>
-				</div>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="stockSymbol">Try Stock Name or Symbol ("Apple" or "AAPL")</label>
+						<input (input)="term$.next($event.target.value)" class="form-control" id="stockSymbol" name="stockSymbol" value={{symbol}}>
+						<ul class="list-group" [hidden]="items == null || items.length < 1" id="stockList">
+							<li class="list-group-item" *ngFor="let item of items"><a (click)="quote(item.Symbol);getChartData(item.Symbol);">{{item.Name}} ({{item.Exchange}})</a></li>
+						</ul>
+					</div>
+				</form>
 			</div>
-
-			<!--<div class="row" *ngIf="news != null">
-				<ul class="list-group">
-					<li class="list-group-item" *ngFor="let item of news; trackBy:item.NewsID;"><a href="item.URL">{{item.Title}}</a></li>
-				</ul>
-			</div>-->
 		</div>
-		<div class="col-md-8 col-xs-8">  
+		<div class="col-md-8 col-xs-8">
 			<div class="well well-lg" *ngIf="stockQuote != null || stockQuote != undefined">
 				<h3>{{stockQuote.Name}} ({{stockQuote.Symbol}})</h3>
 				<div class="table-responsive">
@@ -80,11 +72,11 @@
 									<tr *ngIf="stockQuote != null || stockQuote != undefined">
 										<th>Market Cap</th>
 										<td>{{stockQuote.MarketCap | currency:'USD':true:'1.2-2'}}</td>
-									</tr>			
+									</tr>
 									<tr *ngIf="stockQuote != null || stockQuote != undefined">
 										<th>Volume</th>
 										<td>{{stockQuote.Volume | currency:'USD':true:'1.2-2'}}</td>
-									</tr>															
+									</tr>
 								</tbody>
 							</table>
 						</div>

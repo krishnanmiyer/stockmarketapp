@@ -157,7 +157,7 @@ export class StockmarketService {
     return this.http.post(queryUrl, params, options).map(r => r.json());    
   }
 
-   login(input: UserLogin) {
+   login(input: Userlogin) {
     let params: string = [
       `${input.username}`,
       `${input.password}`,
